@@ -100,13 +100,15 @@ public class MovieRepository {
 //    Return success message wrapped in a ResponseEntity object
 //    Controller Name - deleteDirectorByName
     public String deleteDirectorByName(String name){
-        dirdB.remove(name);
+
         for(String x:mddB.keySet()){
             if(mddB.get(x).equals(name)){
                 movdB.remove(x);
                 mddB.remove(x);
             }
+
         }
+        dirdB.remove(name);
         return "Deleted Successfully";
     }
 //    Delete all directors and all movies by them from the records: DELETE /movies/delete-all-directors
@@ -118,7 +120,8 @@ public class MovieRepository {
     public String deleteAllDirectors() {
 
         for (String x : mddB.keySet()) {
-            dirdB.remove(mddB.get(x));
+            if(dirdB.containsKey(mddB.get(x)))
+                dirdB.remove(mddB.get(x));
             movdB.remove(x);
             mddB.remove(x);
 
