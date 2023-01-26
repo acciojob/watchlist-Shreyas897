@@ -4,10 +4,8 @@ package com.driver;
 import org.springframework.stereotype.Repository;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 @Repository
 
 public class MovieRepository {
@@ -90,25 +88,26 @@ public class MovieRepository {
     public List<String> findAllMovies() {
 
         return new ArrayList<>(movdB.keySet());
-//        for(String x: movdB.keySet()){
-//                mov.add(x);
-//        }
-        //return mov1;
+
     }
 //    Delete a director and its movies from the records: DELETE /movies/delete-director-by-name
 //    Pass director’s name as request parameter
 //    Return success message wrapped in a ResponseEntity object
 //    Controller Name - deleteDirectorByName
     public String deleteDirectorByName(String name){
-
+        HashSet<String>hs= new HashSet<>();
+        dirdB.remove(name);
         for(String x:mddB.keySet()){
             if(mddB.get(x).equals(name)){
-                movdB.remove(x);
-                mddB.remove(x);
+                hs.add(x);
             }
 
         }
-        dirdB.remove(name);
+        for(String x:hs) {
+            movdB.remove(x);
+            mddB.remove(x);
+        }
+
         return "Deleted Successfully";
     }
 //    Delete all directors and all movies by them from the records: DELETE /movies/delete-all-directors
@@ -118,19 +117,16 @@ public class MovieRepository {
 //    (Note that there can be some movies on your watchlist that aren’t mapped to any of the director.
 //    Make sure you do not remove them.)
     public String deleteAllDirectors() {
-
+        HashSet<String>hs= new HashSet<>();
         for (String x : mddB.keySet()) {
-            if(dirdB.containsKey(mddB.get(x)))
-                dirdB.remove(mddB.get(x));
+
+            hs.add(x);
+        }
+        for(String x:hs) {
             movdB.remove(x);
             mddB.remove(x);
-
         }
-
-        if (dirdB.size() > 0) {
-            for (String x1 : dirdB.keySet())
-                dirdB.remove(x1);
-        }
+        dirdB.clear();
         return "Deleted Successfully";
     }
 
