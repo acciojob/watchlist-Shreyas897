@@ -33,7 +33,7 @@ public class MovieController {
         Movie res=movieService.getMovieByName(name);
         if(res==null)
             return new ResponseEntity("Movies doesn't exist",HttpStatus.NOT_FOUND);
-        return new ResponseEntity(res,HttpStatus.FOUND);
+        return new ResponseEntity(res,HttpStatus.CREATED);
 
     }
     @GetMapping("/movies/get-director-by-name/{name}")
@@ -41,25 +41,25 @@ public class MovieController {
         Director res=movieService.getDirectorByName(name);
         if(res==null)
             return new ResponseEntity("Director doesn't exist",HttpStatus.NOT_FOUND);
-        return new ResponseEntity(res,HttpStatus.FOUND);
+        return new ResponseEntity(res,HttpStatus.CREATED);
     }
     @GetMapping("/movies/get-movies-by-director-name/{director}")
     public ResponseEntity getMoviesByDirectorName(@PathVariable("director") String director){
         List<String>res=movieService.getMoviesByDirectorName(director);
         if(res==null)
             return new ResponseEntity("Director Doesn't exist",HttpStatus.NOT_FOUND);
-        return new ResponseEntity(res,HttpStatus.FOUND);
+        return new ResponseEntity(res,HttpStatus.CREATED);
     }
     @GetMapping("/movies/get-all-movies")
     public ResponseEntity findAllMovies(){
-        return new ResponseEntity(movieService.findAllMovies(),HttpStatus.FOUND);
+        return new ResponseEntity(movieService.findAllMovies(),HttpStatus.CREATED);
     }
     @DeleteMapping("/movies/delete-director-by-name")
     public ResponseEntity deleteDirectorByName(@RequestParam("name") String name){
-        return new ResponseEntity(movieService.deleteDirectorByName(name),HttpStatus.OK);
+        return new ResponseEntity(movieService.deleteDirectorByName(name),HttpStatus.CREATED);
     }
     @DeleteMapping("/movies/delete-all-directors")
     public ResponseEntity deleteAllDirectors(){
-        return new ResponseEntity(movieService.deleteAllDirectors(),HttpStatus.OK);
+        return new ResponseEntity(movieService.deleteAllDirectors(),HttpStatus.CREATED);
     }
 }
