@@ -1,8 +1,8 @@
 package com.driver;
 
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -114,17 +114,20 @@ public class MovieRepository {
 //    Controller Name - deleteAllDirectors
 //    (Note that there can be some movies on your watchlist that aren’t mapped to any of the director.
 //    Make sure you do not remove them.)
-    public String deleteAllDirectors(){
+    public String deleteAllDirectors() {
 
-        for(String x:mddB.keySet()){
-                dirdB.remove(mddB.get(x));
-                movdB.remove(x);
-                mddB.remove(x);
-                if(dirdB.size()>0){
-                    for(String x1:dirdB.keySet())
-                        dirdB.remove(x1);
-                }
+        for (String x : mddB.keySet()) {
+            dirdB.remove(mddB.get(x));
+            movdB.remove(x);
+            mddB.remove(x);
+
+        }
+
+        if (dirdB.size() > 0) {
+            for (String x1 : dirdB.keySet())
+                dirdB.remove(x1);
         }
         return "Deleted Successfully";
     }
+
 }
