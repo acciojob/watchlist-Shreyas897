@@ -41,18 +41,18 @@ public class MovieController {
         Director res=movieService.getDirectorByName(name);
         if(res==null)
             return new ResponseEntity("Director doesn't exist",HttpStatus.NOT_FOUND);
-        return new ResponseEntity(res,HttpStatus.CREATED);
+        return new ResponseEntity(res,HttpStatus.FOUND);
     }
     @GetMapping("/movies/get-movies-by-director-name/{director}")
     public ResponseEntity getMoviesByDirectorName(@PathVariable("director") String director){
         List<String>res=movieService.getMoviesByDirectorName(director);
         if(res==null)
             return new ResponseEntity("Director Doesn't exist",HttpStatus.NOT_FOUND);
-        return new ResponseEntity(res,HttpStatus.CREATED);
+        return new ResponseEntity(res,HttpStatus.FOUND);
     }
     @GetMapping("/movies/get-all-movies")
     public ResponseEntity findAllMovies(){
-        return new ResponseEntity(movieService.findAllMovies(),HttpStatus.CREATED);
+        return new ResponseEntity(movieService.findAllMovies(),HttpStatus.FOUND);
     }
     @DeleteMapping("/movies/delete-director-by-name")
     public ResponseEntity deleteDirectorByName(@RequestParam("name") String name){

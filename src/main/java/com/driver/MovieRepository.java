@@ -38,12 +38,12 @@ public class MovieRepository {
 //    Return success message wrapped in a ResponseEntity object
 //    Controller Name - addMovieDirectorPair
     public String addMovieDirectorPair(String movie_name,String director_name){
-//        if(!movdB.containsKey(movie_name)) {
-//            return "Movie Doesn't Exist";
-//        }
-//        if(!dirdB.containsKey(director_name)){
-//            return "Director Doesn't Exist";
-//        }
+        if(!movdB.containsKey(movie_name)) {
+            return "Movie Doesn't Exist";
+        }
+        if(!dirdB.containsKey(director_name)){
+            return "Director Doesn't Exist";
+        }
         mddB.put(movie_name, director_name);
         return "Added Successfully";
     }
@@ -52,9 +52,9 @@ public class MovieRepository {
 //    Return Movie object wrapped in a ResponseEntity object
 //    Controller Name - getMovieByName
     public Movie getMovieByName(String name){
-//        if(!movdB.containsKey(name)){
-//            return null;
-//        }
+        if(!movdB.containsKey(name)){
+            return null;
+        }
         return movdB.get(name);
     }
 //    Get Director by director name: GET /movies/get-director-by-name/{name}
@@ -62,9 +62,9 @@ public class MovieRepository {
 //    Return Director object wrapped in a ResponseEntity object
 //    Controller Name - getDirectorByName
     public Director getDirectorByName(String name) {
-//        if (!dirdB.containsKey(name)) {
-//            return null;
-//        }
+        if (!dirdB.containsKey(name)) {
+            return null;
+        }
         return dirdB.get(name);
     }
 //    Get List of movies name for a given director name: GET /movies/get-movies-by-director-name/{director}
@@ -73,9 +73,9 @@ public class MovieRepository {
 //    Controller Name - getMoviesByDirectorName
     public List<String> getMoviesByDirectorName(String director){
         List<String>m=new ArrayList<>();
-//        if(!dirdB.containsKey(director)){
-//            return null;
-//        }
+        if(!dirdB.containsKey(director)){
+            return null;
+        }
         for(String x: mddB.keySet()){
             if(mddB.get(x).equals(director)){
                 m.add(x);
