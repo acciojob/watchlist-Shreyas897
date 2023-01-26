@@ -120,6 +120,10 @@ public class MovieRepository {
                 dirdB.remove(mddB.get(x));
                 movdB.remove(x);
                 mddB.remove(x);
+                if(dirdB.size()>0){
+                    for(String x1:dirdB.keySet())
+                        dirdB.remove(x1);
+                }
         }
         return "Deleted Successfully";
     }
