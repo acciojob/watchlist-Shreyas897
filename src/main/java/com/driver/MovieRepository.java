@@ -88,11 +88,12 @@ public class MovieRepository {
 //    Return List of movies name(List()) wrapped in a ResponseEntity object
 //    Controller Name - findAllMovies
     public List<String> findAllMovies() {
-        List<String> mov = new ArrayList<>();
-        for(String x: movdB.keySet()){
-                mov.add(x);
-        }
-        return mov;
+
+        return new ArrayList<>(movdB.keySet());
+//        for(String x: movdB.keySet()){
+//                mov.add(x);
+//        }
+        //return mov1;
     }
 //    Delete a director and its movies from the records: DELETE /movies/delete-director-by-name
 //    Pass director’s name as request parameter
